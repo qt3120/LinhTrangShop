@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      th:replace="admin/layout/layout :: layout(~{::title}, ~{::section})">
+
+<head>
+    <title>Bài đăng</title>
+</head>
+
+<body>
+<section>
+    <div class="container-fluid">
+        <!-- Breadcrumbs-->
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+                <a href="/admin/news">Bài đăng</a>
+            </li>
+            <li class="breadcrumb-item active">Danh sách</li>
+        </ol>
+
+        <!-- Page Content -->
+        <div class="card mb-3">
+            <div class="card-header">
+                <a class="btn btn-primary text-end" href="/admin/news/add"><i class="fas fa-plus"></i> Thêm
+                    mới</a>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                        <thead>
+                        <tr>
+                            <th>STT</th>
+                            <th>Ảnh tiêu đề</th>
+                            <th>Tên bài đăng</th>
+                            <th>Nội dung bài viết</th>
+                            <th>Trạng thái bài viết</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="item : ${items}">
+                            <td th:text="${item.id}"></td>
+                            <td>
+                                <image class="img-thumbnail" width="100"
+                                       th:src="@{/files/{image}(image=${item.image})}">
+                            </td>
+                            <td th:text="${item.title}"></td>
+                            <td th:text="${item.shortDescription}"></td>
+
+                            <td>
+                                <a th:href="@{/admin/news/edit/{id}(id=${item.id})}"><i
+                                        class="fas fa-edit ml-2"></i></a>
+                                <a th:href="@{/admin/news/delete/{id}(id=${item.id})}"><i
+                                        class="fas fa-trash ml-2"></i></a>
+                            </td>
+                        </tr>
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+</body>
+
+</html>

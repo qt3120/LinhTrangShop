@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      th:replace="user/layout/layout :: layout(~{::title}, ~{::main}, ~{::scriptSection})">
+
+<!-- Mirrored from blogzine.webestica.com/index-4.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 17 Nov 2021 07:27:34 GMT -->
+
+<head>
+    <title>Đăng nhập</title>
+
+</head>
+
+<body>
+
+<!-- =======================
+Main hero START -->
+<main>
+    <!-- START SECTION BREADCRUMB -->
+    <div class="breadcrumb_section bg_gray page-title-mini">
+        <div class="container">
+            <!-- STRART CONTAINER -->
+            <div class="row align-items-center">
+                <div class="col-md-6">
+                    <div class="page-title">
+                        <h1>Thanh toán</h1>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <ol class="breadcrumb justify-content-md-end">
+                        <li class="breadcrumb-item"><a href="/">Trang chủ</a></li>
+                        <li class="breadcrumb-item"><a href="#">Danh sách</a></li>
+                        <li class="breadcrumb-item active">Thủ tục</li>
+                    </ol>
+                </div>
+            </div>
+        </div><!-- END CONTAINER-->
+    </div>
+    <!-- END SECTION BREADCRUMB -->
+
+    <!-- START MAIN CONTENT -->
+    <div class="main_content">
+
+        <!-- START SECTION SHOP -->
+        <div class="section">
+            <div class="container">
+
+                <div class="row">
+                    <div class="col-12">
+                        <div class="medium_divider"></div>
+                        <div class="divider center_icon"><i class="linearicons-credit-card"></i></div>
+                        <div class="medium_divider"></div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="heading_s1">
+                            <h4>Chi tiết hóa đơn</h4>
+                        </div>
+                        <form method="post" th:action="@{/checkout}" th:object="${item}">
+                            <div class="form-group">
+                                <input type="text" maxlength="225" required class="form-control" th:field="*{name}"
+                                       placeholder="Họ tên *">
+                            </div>
+
+                            <div class="form-group">
+                                <input type="text" maxlength="225" class="form-control" th:field="*{address}" required
+                                       placeholder="Địa chỉ *">
+                            </div>
+
+                            <div class="form-group">
+                                <input class="form-control" maxlength="12" required type="text"
+                                       th:field="*{phoneNumber}"
+                                       placeholder="Số điện thoại *">
+                            </div>
+                            <div class="form-group">
+                                <input class="form-control" maxlength="225" required type="text" th:field="*{email}"
+                                       placeholder="Email address *">
+                            </div>
+
+                            <div class="heading_s1">
+                                <h4>Ghi chú</h4>
+                            </div>
+                            <div class="form-group">
+									<textarea rows="5" class="form-control" maxlength="225" th:field="*{note}"
+                                              placeholder="Ghi chú"></textarea>
+                            </div>
+                            <div class="form-group">
+                                <button type="submit" class="btn btn-fill-out btn-block">Đặt hàng</button>
+                            </div>
+
+                        </form>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="order_review">
+                            <div class="heading_s1">
+                                <h4>Đơn hàng của bạn</h4>
+                            </div>
+                            <div class="table-responsive order_table">
+                                <table class="table">
+                                    <thead>
+                                    <tr>
+                                        <th>Sản phẩm</th>
+                                        <th>Tổng tiền</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr th:each="item : ${session.cart}">
+                                        <td><span th:style="|background-color: ${item.colorId.colorName};color:white;|"
+                                                  th:text="${item.product.productName}"> </span> <span
+                                                class="product-qty" th:text="${'x ' + item.sizeId.sizeName}">x 2</span>
+                                            <span
+                                                    class="product-qty" th:text="${'x ' + item.quantity}">x 2</span>
+                                        </td>
+                                        <td th:text="${#numbers.formatDecimal(item.product.price*item.quantity, 0, 'COMMA', 0, 'POINT')}">
+                                            $90.00
+                                        </td>
+                                    </tr>
+
+                                    </tbody>
+                                    <tfoot>
+
+                                    <tr>
+                                        <th>Tổng tiền</th>
+                                        <td class="product-subtotal"
+                                            th:text="${#numbers.formatDecimal(session.totalAmount, 0, 'COMMA', 0, 'POINT')}"></td>
+                                    </tr>
+                                    </tfoot>
+                                </table>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- END SECTION SHOP -->
+
+        <!-- START SECTION SUBSCRIBE NEWSLETTER -->
+
+        <!-- START SECTION SUBSCRIBE NEWSLETTER -->
+
+    </div>
+    <!-- END MAIN CONTENT -->
+</main>
+
+
+<!-- =======================
+Cards END -->
+</body>
+<scriptSection>
+</scriptSection>
+
+</html>

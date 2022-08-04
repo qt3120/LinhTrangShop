@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      th:replace="admin/layout/layout :: layout(~{::title}, ~{::section})">
+
+<head>
+    <title>Danh Mục sản phẩm</title>
+</head>
+
+<body>
+<section>
+    <div class="container-fluid">
+        <!-- Breadcrumbs-->
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+                <a href="/admin/supply">Danh mục</a>
+            </li>
+            <li class="breadcrumb-item active">Danh sách</li>
+        </ol>
+
+        <!-- Page Content -->
+        <div class="card mb-3">
+            <div class="card-header">
+                <a class="btn btn-primary text-end" href="/category/add"><i class="fas fa-plus"></i> Thêm mới</a>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                        <thead>
+                        <tr>
+                            <th>STT</th>
+                            <th>Hình ảnh</th>
+                            <th>Tên danh mục sản phẩm</th>
+                            <th></th>
+                        </tr>
+                        </thead>
+
+                        <tbody>
+                        <tr th:each="category : ${categories}">
+                            <td th:text="${category.id}"></td>
+                            <td>
+                                <image class="img-thumbnail" width="100"
+                                       th:src="@{/files/{image}(image=${category.image})}"></image>>
+                            </td>
+                            <td th:text="${category.categoryName}"></td>
+                            <td>
+                                <a th:href="@{/category/edit/{id}(id=${category.id})}"><i class="fas fa-edit ml-2"></i></a>
+                                <a th:href="@{/category/delete/{id}(id=${category.id})}"><i
+                                        class="fas fa-trash ml-2"></i></a>
+                            </td>
+                        </tr>
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+</body>
+
+</html>

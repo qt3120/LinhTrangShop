@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      th:replace="admin/layout/layout :: layout(~{::title}, ~{::section})">
+
+<head>
+    <title>Tin tức</title>
+
+</head>
+
+<body>
+<section>
+    <div class="container-fluid">
+        <!-- Breadcrumbs-->
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+                <a href="/admin/news">Tin tức</a>
+            </li>
+            <li class="breadcrumb-item active">Thêm mới</li>
+        </ol>
+
+        <div class="card mx-auto mt-5 mb-5" style="max-width: 70rem;">
+            <div class="card-header">Thông tin chung</div>
+            <div class="card-body">
+                <form action="#" th:action="@{/admin/news}" th:object="${item}" method="post"
+                      enctype="multipart/form-data">
+                    <div class="form-group">
+                        <div class="form-label-group">
+                            <input type="text" th:field="*{title}" id="inputTitle" class="form-control"
+                                   placeholder="Tiêu đề" maxlength="225" required="required">
+                            <label for="inputTitle">Tiêu đề</label>
+                            <span th:if="${#fields.hasErrors('title')}" th:errors="*{title}" class="text-danger"></span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="form-label-group">
+                            <textarea th:field="*{shortDescription}" class="form-control"></textarea>
+                            <label for="shortDescription"></label>
+                            <span th:if="${#fields.hasErrors('title')}" th:errors="*{title}" class="text-danger"></span>
+                        </div>
+
+                        <span th:if="${#fields.hasErrors('shortDescription')}" th:errors="*{shortDescription}"
+                              class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="inputContent">Nội dung</label>
+                        <textarea th:field="*{content}"></textarea>
+                        <span th:if="${#fields.hasErrors('content')}" th:errors="*{content}" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <input type="file" name="imagePath" class="form-control-file"/>
+                    </div>
+                    <button class="btn btn-primary btn-block" type="submit">Save</a>
+                </form>
+
+            </div>
+        </div>
+    </div>
+    <script>
+        CKEDITOR.replace('content');
+    </script>
+</section>
+
+</body>
+
+</html>

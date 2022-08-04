@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      th:replace="admin/layout/layout :: layout(~{::title}, ~{::section})">
+
+<head>
+    <title>Thống Kê</title>
+</head>
+
+<body>
+<section>
+    <div class="container-fluid">
+        <!-- Breadcrumbs-->
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+                <a href="/admin/report">Thống Kê</a>
+            </li>
+            <li class="breadcrumb-item active">Danh sách</li>
+        </ol>
+
+        <!-- Page Content -->
+        <div class="card mb-3">
+            <div class="card-header">
+                <div class="row">
+                    <a class="btn btn-primary text-end mr-2" href="/admin/report">Theo
+                        sản phẩm</a>
+                    <a class="btn btn-primary text-end mr-2" href="/admin/report/date">Sắp hết hàng</a>
+
+
+                </div>
+
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                        <thead>
+                        <tr>
+                            <th>Ngày</th>
+                            <th>Tổng tiền</th>
+                            <th>Mã SP</th>
+                            <th>Sản phẩm</th>
+                            <th>Số lượng</th>
+                        </tr>
+                        </thead>
+<!--                      
+                        <tbody>
+                        <tr th:each="item : ${items}">
+                            <td th:text="${item.id}"></td>
+                            <td th:text="${item.productName}"></td>
+                            <td th:text="${item.quantity}"></td>
+
+                        </tr>
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <!--				<div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>-->
+        </div>
+    </div>
+</section>
+<script type="text/javascript">
+    $(function () {
+        $('.datepicker').datepicker();
+    });
+</script>
+</body>
+
+</html>

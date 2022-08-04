@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      th:replace="user/layout/layout :: layout(~{::title}, ~{::main}, ~{::scriptSection})">
+
+<!-- Mirrored from blogzine.webestica.com/index-4.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 17 Nov 2021 07:27:34 GMT -->
+
+<head>
+    <title>Tin tức</title>
+
+</head>
+
+<body>
+
+<!-- =======================
+Main hero START -->
+<main>
+    <!-- START SECTION BREADCRUMB -->
+    <div class="breadcrumb_section bg_gray page-title-mini">
+        <div class="container">
+            <!-- STRART CONTAINER -->
+            <div class="row align-items-center">
+                <div class="col-md-6">
+                    <div class="page-title">
+                        <h1>Chi tiết</h1>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <ol class="breadcrumb justify-content-md-end">
+                        <li class="breadcrumb-item"><a href="#">Trang chủ</a></li>
+                        <li class="breadcrumb-item"><a href="#">Tin tức</a></li>
+                        <li class="breadcrumb-item active">Tin tức về quần áo</li>
+                    </ol>
+                </div>
+            </div>
+        </div><!-- END CONTAINER-->
+    </div>
+    <!-- END SECTION BREADCRUMB -->
+
+    <!-- START MAIN CONTENT -->
+    <div class="main_content">
+
+        <!-- START SECTION BLOG -->
+        <div class="section">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xl-12">
+                        <div class="single_post">
+                            <h2 class="blog_title" th:text="${item.title}">But I must explain to you how all this
+                                mistaken idea</h2>
+
+                            <div class="blog_img">
+                                <img th:src="@{/files/{image}(image=${item.image})}" alt="blog_img1">
+                            </div>
+                            <div class="blog_content">
+                                <div class="blog_text" th:utext="${item.content}">
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur malesuada
+                                        malesuada metus ut placerat. Cras a porttitor quam, eget ornare sapien. In
+                                        sit amet vulputate metus. Nullam eget rutrum nisl. Sed tincidunt lorem sed
+                                        maximus interdum. Interdum et malesuada fames ac ante ipsum primis in
+                                        faucibus. Aenean scelerisque efficitur mauris nec tincidunt. Ut cursus leo
+                                        mi, eu ultricies magna faucibus id.</p>
+                                    <blockquote class="blockquote_style3">
+                                        <p>Integer is metus site turpis facilisis customers. elementum an mauris in
+                                            venenatis consectetur east. Praesent condimentum bibendum Morbi sit amet
+                                            commodo pellentesque at fringilla tincidunt risus.</p>
+                                    </blockquote>
+                                    <div class="row">
+                                        <div class="col-sm-6">
+                                            <div class="single_img">
+                                                <img class="w-100 mb-4" src="assets/images/blog_single_img1.jpg"
+                                                     alt="blog_single_img1">
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <div class="single_img">
+                                                <img class="w-100 mb-4" src="assets/images/blog_single_img2.jpg"
+                                                     alt="blog_single_img2">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent id dolor
+                                        dui, dapibus gravida elit. Donec consequat laoreet sagittis. Suspendisse
+                                        ultricies ultrices viverra. Morbi rhoncus laoreet tincidunt. Mauris interdum
+                                        convallis metus. Suspendisse vel lacus est, sit amet tincidunt erat. Etiam
+                                        purus sem, euismod eu vulputate eget, porta quis sapien. Donec tellus est,
+                                        rhoncus vel scelerisque id, iaculis eu nibh.</p>
+                                    <p>Duis vestibulum quis quam vel accumsan. Nunc a vulputate lectus. Vestibulum
+                                        eleifend nisl sed massa sagittis vestibulum. Vestibulum pretium blandit
+                                        tellus, sodales volutpat sapien varius vel. Phasellus tristique cursus erat,
+                                        a placerat tellus laoreet eget. Fusce vitae dui sit amet lacus rutrum
+                                        convallis. Vivamus sit amet lectus venenatis est rhoncus interdum a vitae
+                                        velit.</p>
+                                    <div class="blog_post_footer">
+                                        <div class="row justify-content-between align-items-center">
+                                            <div class="col-md-8 mb-3 mb-md-0">
+                                                <div class="tags">
+                                                    <a href="#">General</a>
+                                                    <a href="#">Design</a>
+                                                    <a href="#">jQuery</a>
+                                                    <a href="#">Branding</a>
+                                                    <a href="#">Modern</a>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <ul class="social_icons text-md-right">
+                                                    <li><a href="#" class="sc_facebook"><i
+                                                            class="ion-social-facebook"></i></a></li>
+                                                    <li><a href="#" class="sc_twitter"><i
+                                                            class="ion-social-twitter"></i></a></li>
+                                                    <li><a href="#" class="sc_google"><i
+                                                            class="ion-social-googleplus"></i></a></li>
+                                                    <li><a href="#" class="sc_youtube"><i
+                                                            class="ion-social-youtube-outline"></i></a></li>
+                                                    <li><a href="#" class="sc_instagram"><i
+                                                            class="ion-social-instagram-outline"></i></a></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <!-- END SECTION BLOG -->
+
+        <!-- START SECTION SUBSCRIBE NEWSLETTER -->
+
+        <!-- START SECTION SUBSCRIBE NEWSLETTER -->
+
+    </div>
+    <!-- END MAIN CONTENT -->
+
+</main>
+
+
+<!-- =======================
+Cards END -->
+</body>
+<scriptSection>
+</scriptSection>
+<!-- Mirrored from blogzine.webestica.com/index-4.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 17 Nov 2021 07:27:35 GMT -->
+
+</html>

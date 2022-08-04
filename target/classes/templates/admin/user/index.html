@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      th:replace="admin/layout/layout :: layout(~{::title}, ~{::section})">
+
+<head>
+    <title>Thể Loại</title>
+</head>
+
+<body>
+<section>
+    <div class="container-fluid">
+        <!-- Breadcrumbs-->
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+                <a href="/user">Người dùng</a>
+            </li>
+            <li class="breadcrumb-item active">Danh sách</li>
+        </ol>
+
+        <!-- Page Content -->
+        <div class="card mb-3">
+            <!--<div class="card-header">
+                <a class="btn btn-primary text-end" href="/user/add"><i class="fas fa-plus"></i> Thêm mới</a>
+            </div>-->
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                        <thead>
+                        <tr>
+                            <th>Tài khoản</th>
+                            <th>Quyền</th>
+                            <th>Trạng thái</th>
+                            <th></th>
+                        </tr>
+                        </thead>
+<!--                        <tfoot>-->
+<!--                        <tr>-->
+<!--                        <tr>-->
+<!--                            <th>Tài khoản</th>-->
+<!--                            <th>Quyền</th>-->
+<!--                            <th>Trạng thái</th>-->
+<!--                            <th></th>-->
+<!--                        </tr>-->
+<!--                        </tr>-->
+<!--                        </tfoot>-->
+                        <tbody>
+                        <tr th:each="user : ${users}">
+                            <td th:text="${user.username}"></td>
+                            <td th:text="${user.role}"></td>
+                            <td> <span class="badge badge-pill badge-primary"
+                                       th:text="${user.active == 0 ? 'Khóa' : 'Hoạt động'}"></span>
+                            </td>
+                            <td>
+                                <a th:if="${user.active == 1}"
+                                   th:href="@{/admin/user/active/{id}(id=${user.id})}"><i
+                                        class="fas fa-lock ml-2"></i></a>
+                                <a th:if="${user.active == 0}"
+                                   th:href="@{/admin/user/active/{id}(id=${user.id})}"><i
+                                        class="fas fa-unlock ml-2"></i></a>
+                                <a th:href="@{/admin/user/edit/{id}(id=${user.id})}"><i
+                                        class="fas fa-edit ml-2"></i></a>
+                            </td>
+                        </tr>
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <!--				<div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>-->
+        </div>
+    </div>
+</section>
+
+</body>
+
+</html>

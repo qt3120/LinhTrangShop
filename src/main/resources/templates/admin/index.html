@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      th:replace="admin/layout/layout :: layout(~{::title}, ~{::section})">
+<head>
+    <title>Trang Quản trị </title>
+</head>
+
+<body>
+<section>
+    <div class="container-fluid">
+        <h3>Chào mừng bạn đã tới trang dành cho quản trị viên</h3>
+        <h4></h4>
+    </div>
+    <div class="container-fluid">
+        <!-- Breadcrumbs-->
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+                <a href="index.html">Bảng tổng quan</a>
+            </li>
+            <li class="breadcrumb-item active">Quản lý</li>
+        </ol>
+
+
+        <!-- Page Content -->
+        <div class="row">
+            <div class="col-xl-3 col-sm-6 mb-3">
+                <div class="card text-white bg-primary o-hidden h-100">
+                    <div class="card-body">
+                        <div class="card-body-icon">
+                            <i class="fas fa-fw fa-comments"></i>
+                        </div>
+                        <div class="mr-5" th:text="${totalCategory} + ' Danh mục'"></div>
+                    </div>
+                    <a class="card-footer text-white clearfix small z-1" href="/category">
+                        <span class="float-left">Xem Chi tiết...</span>
+                        <span class="float-right">
+								<i class="fas fa-angle-right"></i>
+							</span>
+                    </a>
+                </div>
+            </div>
+            <div class="col-xl-3 col-sm-6 mb-3">
+                <div class="card text-white bg-warning o-hidden h-100">
+                    <div class="card-body">
+                        <div class="card-body-icon">
+                            <i class="fas fa-fw fa-list"></i>
+                        </div>
+                        <div class="mr-5" th:text="${totalPost} + ' Bài viết'"></div>
+                    </div>
+                    <a class="card-footer text-white clearfix small z-1" href="/admin/news">
+                        <span class="float-left">Xem Chi tiết...</span>
+                        <span class="float-right">
+								<i class="fas fa-angle-right"></i>
+							</span>
+                    </a>
+                </div>
+            </div>
+            <div class="col-xl-3 col-sm-6 mb-3">
+                <div class="card text-white bg-info o-hidden h-100">
+                    <div class="card-body">
+                        <div class="card-body-icon">
+                            <i class="fas fa-fw fa-list"></i>
+                        </div>
+                        <div class="mr-5" th:text="${totalProduct} + ' Đơn đặt hàng'"></div>
+                    </div>
+                    <a class="card-footer text-white clearfix small z-1" href="/admin/order">
+                        <span class="float-left">Xem Chi tiết...</span>
+                        <span class="float-right">
+								<i class="fas fa-angle-right"></i>
+							</span>
+                    </a>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</section>
+
+</body>
+
+</html>

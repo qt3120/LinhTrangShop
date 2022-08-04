@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      th:replace="admin/layout/layout :: layout(~{::title}, ~{::section})">
+
+<head>
+    <title>Nhà cung cấp</title>
+</head>
+
+<body>
+<section>
+    <div class="container-fluid">
+        <!-- Breadcrumbs-->
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+                <a href="/admin/supply">Nhà cung cấp</a>
+            </li>
+            <li class="breadcrumb-item active">Danh sách</li>
+        </ol>
+
+        <!-- Page Content -->
+        <div class="card mb-3">
+            <div class="card-header">
+                <a class="btn btn-primary text-end" href="/admin/supply/add"><i class="fas fa-plus"></i> Thêm
+                    mới</a>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                        <thead>
+                        <tr>
+                            <th>No</th>
+                            <th>Tên Nhà cung cấp</th>
+                            <th>Email</th>
+                            <th>Số điện thoại</th>
+                            <th>Địa chỉ</th>
+                            <th></th>
+                        </tr>
+                        </thead>
+<!--                        <tfoot>-->
+<!--                        <tr>-->
+<!--                            <th>No</th>-->
+<!--                            <th>Tên Nhà cung cấp</th>-->
+<!--                            <th>Email</th>-->
+<!--                            <th>Số điện thoại</th>-->
+<!--                            <th>Địa chỉ</th>-->
+<!--                            <th></th>-->
+<!--                        </tr>-->
+<!--                        </tfoot>-->
+                        <tbody>
+                        <tr th:each="item : ${items}">
+                            <td th:text="${item.id}"></td>
+
+                            <td th:text="${item.supplyName}"></td>
+                            <td th:text="${item.email}"></td>
+                            <td th:text="${item.phone}"></td>
+                            <td th:text="${item.address}"></td>
+                            <td>
+                                <a th:href="@{/admin/supply/edit/{id}(id=${item.id})}"><i
+                                        class="fas fa-edit ml-2"></i></a>
+                                <a th:href="@{/admin/supply/delete/{id}(id=${item.id})}"><i
+                                        class="fas fa-trash ml-2"></i></a>
+                            </td>
+                        </tr>
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <!--				<div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>-->
+        </div>
+    </div>
+</section>
+
+</body>
+
+</html>

@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      th:replace="user/layout/layout :: layout(~{::title}, ~{::main}, ~{::scriptSection})">
+
+<!-- Mirrored from blogzine.webestica.com/index-4.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 17 Nov 2021 07:27:34 GMT -->
+
+<head>
+    <title>Đăng nhập</title>
+
+</head>
+
+<body>
+
+<!-- =======================
+Main hero START -->
+<main>
+    <!-- START SECTION BREADCRUMB -->
+    <div class="breadcrumb_section bg_gray page-title-mini">
+        <div class="container">
+            <!-- STRART CONTAINER -->
+            <div class="row align-items-center">
+                <div class="col-md-6">
+                    <div class="page-title">
+                        <h1>Chi tiết</h1>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <ol class="breadcrumb justify-content-md-end">
+                        <li class="breadcrumb-item"><a href="/">Trang chủ</a></li>
+                        <li class="breadcrumb-item"><a href="#">Chi tiết</a></li>
+                        <li class="breadcrumb-item active">Chi tiết</li>
+                    </ol>
+                </div>
+            </div>
+        </div><!-- END CONTAINER-->
+    </div>
+    <!-- END SECTION BREADCRUMB -->
+
+    <!-- START MAIN CONTENT -->
+    <div class="main_content">
+
+        <!-- START SECTION SHOP -->
+        <div class="section">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-3 col-md-4">
+                        <div class="dashboard_menu">
+                            <ul class="nav nav-tabs flex-column" role="tablist">
+
+                                <li class="nav-item">
+                                    <a class="nav-link active" href="/order/history"
+                                       aria-selected="false"><i
+                                            class="ti-shopping-cart-full"></i>Đơn hàng</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="/order/history/changepassword"
+                                       aria-selected="true"><i
+                                            class="ti-location-pin"></i>Đổi mật khẩu</a>
+                                </li>
+
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-lg-9 col-md-8">
+                        <div class="tab-content dashboard_content">
+
+                            <div class="tab-pane fade active show" id="orders" role="tabpanel"
+                                 aria-labelledby="orders-tab">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h3>Đơn hàng đã đặt</h3>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-12 table-responsive">
+                                            <table class="table table-striped">
+                                                <thead>
+                                                <tr>
+                                                    <th>Số lượng</th>
+                                                    <th>Sản phẩm</th>
+                                                    <th>Size</th>
+                                                    <th>Màu sắc</th>
+                                                    <th>Tổng tiền</th>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                <tr th:each="orderDetail: ${item.orderDetails}">
+                                                    <td th:text="${orderDetail.quantity}"></td>
+                                                    <td th:text="${orderDetail.product.productName}"></td>
+                                                    <td th:text="${orderDetail.size.sizeName}"></td>
+                                                    <td th:style="|background-color: ${orderDetail.color.colorName};|"
+                                                        th:text="${orderDetail.color.colorName}"></td>
+                                                    <td th:text="${#numbers.formatDecimal(orderDetail.amount, 0, 'COMMA', 0, 'POINT')}"></td>
+                                                </tr>
+
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        <!-- /.col -->
+                                    </div>
+                                    <div cl ass="row">
+                                        <!-- accepted payments column -->
+                                        <div class="col-6">
+
+                                        </div>
+                                        <!-- /.col -->
+                                        <div class="col-6">
+
+
+                                            <div class="table-responsive">
+                                                <table class="table">
+
+                                                    <tr>
+                                                        <th>Tổng:</th>
+                                                        <td th:text="${#numbers.formatDecimal(#aggregates.sum(item.orderDetails.![amount]), 0, 'COMMA', 0, 'POINT')}">
+                                                            $265.24
+                                                        </td>
+                                                    </tr>
+                                                </table>
+                                            </div>
+                                        </div>
+                                        <!-- /.col -->
+                                    </div>
+                                </div>
+                                <span class="badge badge-pill badge-primary"
+                                      th:text="${item.status == 0 ? 'Đã đặt hàng' : item.status == 1 ? 'Đã hủy' : item.status == 2 ? 'Đang giao hàng' : 'Giao hàng thành công'}"></span>
+
+                                <a th:if="${item.status == 0}" class="btn btn-primary text-end mr-2"
+                                   th:href="@{/order/delete/{id}(id=${item.id})}">Hủy đơn</a>
+
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- END SECTION SHOP -->
+
+        <!-- START SECTION SUBSCRIBE NEWSLETTER -->
+        <!--<div class="section bg_default small_pt small_pb">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-md-6">
+                        <div class="heading_s1 mb-md-0 heading_light">
+                            <h3>Subscribe Our Newsletter</h3>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="newsletter_form">
+                            <form>
+                                <input type="text" required="" class="form-control rounded-0"
+                                    placeholder="Enter Email Address">
+                                <button type="submit" class="btn btn-dark rounded-0" name="submit"
+                                    value="Submit">Subscribe</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>-->
+        <!-- START SECTION SUBSCRIBE NEWSLETTER -->
+
+    </div>
+    <!-- END MAIN CONTENT -->
+</main>
+
+
+<!-- =======================
+Cards END -->
+</body>
+<scriptSection>
+</scriptSection>
+<!-- Mirrored from blogzine.webestica.com/index-4.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 17 Nov 2021 07:27:35 GMT -->
+
+</html>

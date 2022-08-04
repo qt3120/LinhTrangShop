@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      th:replace="admin/layout/layout :: layout(~{::title}, ~{::section})">
+
+<head>
+    <title>Thống Kê</title>
+</head>
+
+<body>
+<section>
+    <div class="container-fluid">
+        <!-- Breadcrumbs-->
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+                <a href="/admin/report">Thống Kê</a>
+            </li>
+            <li class="breadcrumb-item active">Danh sách</li>
+        </ol>
+
+        <!-- Page Content -->
+        <div class="card mb-3">
+            <div class="card-header">
+                <div class="row">
+                    <a class="btn btn-primary text-end mr-2" href="/admin/report">Theo
+                        sản phẩm</a>
+                    <a class="btn btn-primary text-end mr-2" href="/admin/report/date">Sắp hết hàng</a>
+
+
+                    <form action="#" th:action="@{/admin/report}" method="post">
+                        <input type="date" id="date1" name="date1">
+                        đến
+                        <input type="date" id="date2" name="date2">
+                        <button type="submit">Lọc</button>
+                    </form>
+                </div>
+
+
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <div th:if="${date1}">
+                        <p th:text="${'Thống kê từ ngày ' + date1 + ' đến '+ date2}"></p>
+
+
+                        <p th:text="${'Số đơn hàng bán được: ' + dem + '............Thu về: '+ tong +' VNĐ'}"></p>
+                    </div>
+                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                        <thead>
+                        <tr>
+                            <th>Mã SP</th>
+                            <th>Sản phẩm</th>
+                            <th>Số lượng</th>
+                            <th>Tổng tiền</th>
+                        </tr>
+                        </thead>
+                        <tfoot>
+<!--                        <tr>-->
+<!--                            <th>Mã SP</th>-->
+<!--                            <th>Sản phẩm</th>-->
+<!--                            <th>Số lượng</th>-->
+<!--                            <th>Tổng tiền</th>-->
+<!--                        </tr>-->
+                        </tfoot>
+                        <tbody>
+                        <tr th:each="item : ${items}">
+                            <td th:text="${item.productId}"></td>
+                            <td th:text="${item.productName}"></td>
+                            <td th:text="${item.quantity}"></td>
+                            <td th:text="${#numbers.formatDecimal(item.amount, 0, 'COMMA', 0, 'POINT')}"></td>
+
+                        </tr>
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+</body>
+
+</html>

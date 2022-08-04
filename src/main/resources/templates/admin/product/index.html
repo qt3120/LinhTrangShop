@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      th:replace="admin/layout/layout :: layout(~{::title}, ~{::section})">
+
+<head>
+    <title>Danh mục sản phẩm</title>
+    <style>
+
+    </style>
+</head>
+
+<body>
+<section>
+    <div class="container-fluid">
+        <!-- Breadcrumbs-->
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+                <a href="/admin/product">Sản phẩm</a>
+            </li>
+            <li class="breadcrumb-item active">Danh sách</li>
+        </ol>
+
+        <!-- Page Content -->
+        <div class="card mb-3">
+            <div class="card-header">
+                <div class="row">
+                    <a class="btn btn-primary text-end" href="/admin/product/add"><i class="fas fa-plus"></i> Thêm
+                        mới</a>
+                    <div class="col-8">
+                        <form class="form-inline" th:action="@{/admin/product}" th:object="${searchItem}">
+
+                            <select class="form-control ml-2" th:field="*{supplyId}">
+                                <option value="" selected>---Chọn Nhà cung cấp---</option>
+                                <option th:each="item: ${supplies}" th:value="${item.id}"
+                                        th:text="${item.supplyName}">
+                                </option>
+                            </select>
+                            <button type="submit" class="btn btn-primary ml-2">Lọc</button>
+                        </form>
+                    </div>
+                    <form th:action="@{/admin/product/search}">
+                        <input type="text" name="search" id="search" placeholder="Nhập tên sản phẩm">
+                        <button type="submit" class="btn btn-primary ml-2">Tìm kiếm</button>
+                    </form>
+                </div>
+
+
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                        <thead>
+                        <tr>
+                            <th>STT</th>
+                            <th>Ảnh</th>
+                            <th>Thể Loại</th>
+                            <th>Nhà cung cấp</th>
+                            <th>Tên Sản phẩm</th>
+                            <th>Đơn giá</th>
+                            <th>Số lượng</th>
+                            <th>Size</th>
+                            <th>Màu sắc</th>
+                            <th>Pin</th>
+                            <th></th>
+                        </tr>
+                        </thead>
+<!--                        <tfoot>-->
+<!--                        <tr>-->
+<!--                            <th>No</th>-->
+<!--                            <th>Image</th>-->
+<!--                            <th>Thể Loại</th>-->
+<!--                            <th>Nhà cung cấp</th>-->
+<!--                            <th>Tên Sản phẩm</th>-->
+<!--                            <th>Đơn giá</th>-->
+<!--                            <th>Số lượng</th>-->
+<!--                            <th>Size</th>-->
+<!--                            <th>Màu sắc</th>-->
+<!--                            <th>Pin</th>-->
+<!--                            <th></th>-->
+<!--                        </tr>-->
+<!--                        </tfoot>-->
+                        <tbody>
+                        <tr th:each="item : ${items.content}">
+                            <td th:text="${item.id}"></td>
+                            <td>
+                                <image class="img-thumbnail" width="100"
+                                       th:src="@{/files/{image}(image=${item.image})}">
+                            </td>
+                            <td th:text="${item.category.categoryName}"></td>
+                            <td th:text="${item.supply.supplyName}"></td>
+                            <td th:text="${item.productName}"></td>
+                            <td th:text="${item.price}"></td>
+                            <td th:text="${item.quantity}"></td>
+                            <td>
+                                <div th:each="item : ${item.sizes}">
+											<span class="badge badge-pill badge-primary"
+                                                  th:utext="${item.sizeName }"></span>&nbsp;
+                                </div>
+                            </td>
+                            <td>
+                                <div th:each="item : ${item.colors}">
+											<span class="badge badge-pill badge-primary"
+                                                  th:utext="${item.colorName }"></span>&nbsp;
+                                </div>
+                            </td>
+                            <td><input type="checkbox" name="pin" th:checked="${item.pin}" disabled/></td>
+                            <td>
+                                <a th:href="@{/admin/product/view/{id}(id=${item.id})}"><i
+                                        class="fas fa-eye ml-2"></i></a>
+                                <a th:href="@{/admin/product/edit/{id}(id=${item.id})}"><i
+                                        class="fas fa-edit ml-2"></i></a>
+                                <a th:href="@{/admin/product/delete/{id}(id=${item.id})}"><i
+                                        class="fas fa-trash ml-2"></i></a>
+
+                            </td>
+                        </tr>
+
+                        </tbody>
+                    </table>
+                    <div class="pagination" th:if="${items.totalPages > 0}">
+                        <a th:each="pageNumber : ${pageNumbers}"
+                           th:href="@{/admin/product(supplyId=${searchItem.supplyId},size=${items.size}, page=${pageNumber})}"
+                           th:text=${pageNumber} th:class="${pageNumber==items.number + 1} ? active">&laquo;</a>
+
+                    </div>
+
+
+                </div>
+            </div>
+            <!--				<div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>-->
+        </div>
+    </div>
+</section>
+
+</body>
+
+</html>

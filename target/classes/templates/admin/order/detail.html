@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      th:replace="admin/layout/layout :: layout(~{::title}, ~{::section})">
+
+<head>
+    <title>Đơn hàng</title>
+</head>
+
+<body>
+<section>
+    <div class="container-fluid">
+        <!-- Content Wrapper. Contains page content -->
+        <div class="content-wrapper">
+            <!-- Content Header (Page header) -->
+            <section class="content-header">
+                <div class="container-fluid">
+                    <div class="row mb-2">
+                        <div class="col-sm-6">
+                            <h1>Hóa đơn</h1>
+                        </div>
+                        <div class="col-sm-6">
+                            <ol class="breadcrumb float-sm-right">
+                                <li class="breadcrumb-item"><a href="/">Trang chủ</a></li>
+                                <li class="breadcrumb-item active">Hóa đơn</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div><!-- /.container-fluid -->
+            </section>
+
+            <section class="content">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="callout callout-info">
+
+                            </div>
+
+
+                            <!-- Main content -->
+                            <div class="invoice p-3 mb-3">
+                                <!-- title row -->
+                                <div class="row">
+                                    <div class="col-12">
+                                        <h4>
+                                            <i class="fas fa-globe"></i> Linh Trang Store .
+                                            <small class="float-right"
+                                                   th:text="${'Ngày: ' + #calendars.format(#calendars.createNow(), 'dd-M-yyyy')}">Date:
+                                                2/10/2014</small>
+                                        </h4>
+                                    </div>
+                                    <!-- /.col -->
+                                </div>
+                                <!-- info row -->
+                                <div class="row invoice-info mb-4">
+                                    <div class="col-sm-4 invoice-col">
+                                        <b th:text="${'Mã hóa đơn: #' + item.id}">Invoice #007612</b><br>
+                                        <br>
+                                        <b>Ngày đặt:</b> <span
+                                            th:text="${#dates.format(item.createdAt, 'dd-M-yyyy')}"></span><br>
+                                        <b>Tài khoản:</b> <span th:text="${item.user.username}"></span>
+                                    </div>
+                                    <!-- /.col -->
+                                    <div class="col-sm-4 invoice-col">
+
+                                    </div>
+                                    <!-- /.col -->
+                                    <div class="col-sm-4 invoice-col">
+
+                                    </div>
+                                    <!-- /.col -->
+                                </div>
+                                <!-- /.row -->
+
+                                <!-- Table row -->
+                                <div class="row">
+                                    <div class="col-12 table-responsive">
+                                        <table class="table table-striped">
+                                            <thead>
+                                            <tr>
+                                                <th>Số lượng</th>
+                                                <th>Sản phẩm</th>
+                                                <th>Size</th>
+                                                <th>Màu sắc</th>
+                                                <th>Tổng tiền</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            <tr th:each="orderDetail: ${item.orderDetails}">
+                                                <td th:text="${orderDetail.quantity}">1</td>
+                                                <td th:text="${orderDetail.product.productName}">Call of Duty</td>
+                                                <td th:text="${orderDetail.size.sizeName}">455-981-221</td>
+                                                <td th:style="|background-color: ${orderDetail.color.colorName};|"
+                                                    th:text="${orderDetail.color.colorName}">El snort testosterone
+                                                    trophy driving gloves handsome
+                                                </td>
+                                                <td th:text="${#numbers.formatDecimal(orderDetail.amount, 0, 'COMMA', 0, 'POINT')}">
+                                                    $64.50
+                                                </td>
+                                            </tr>
+
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <!-- /.col -->
+                                </div>
+                                <!-- /.row -->
+
+                                <div class="row">
+                                    <!-- accepted payments column -->
+                                    <div class="col-6">
+
+                                    </div>
+                                    <!-- /.col -->
+                                    <div class="col-6">
+
+
+                                        <div class="table-responsive">
+                                            <table class="table">
+
+                                                <tr>
+                                                    <th>Tổng:</th>
+                                                    <td th:text="${#numbers.formatDecimal(#aggregates.sum(item.orderDetails.![amount]), 0, 'COMMA', 0, 'POINT')}">
+                                                        $265.24
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </div>
+                                    </div>
+                                    <!-- /.col -->
+                                </div>
+                                <!-- /.row -->
+
+
+                            </div>
+                            <!-- /.invoice -->
+                        </div><!-- /.col -->
+                    </div><!-- /.row -->
+                </div><!-- /.container-fluid -->
+            </section>
+            <!-- /.content -->
+        </div>
+        <!-- /.content-wrapper -->
+    </div>
+</section>
+
+</body>
+
+</html>

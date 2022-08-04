@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      th:replace="admin/layout/layout :: layout(~{::title}, ~{::section})">
+
+<head>
+    <title>Sản phẩm</title>
+</head>
+
+<body>
+<section>
+    <div class="container-fluid">
+        <!-- Breadcrumbs-->
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+                <a href="/admin/product">Sản phẩm</a>
+            </li>
+            <li class="breadcrumb-item active">Cập nhật</li>
+        </ol>
+
+        <div class="card mx-auto mt-5" style="max-width: 70rem;">
+            <div class="card-header">Thông tin chung</div>
+            <div class="card-body">
+                <form action="#" th:action="@{/admin/product/{id}(id=${item.id})}" th:object="${item}" method="post"
+                      enctype="multipart/form-data">
+                    <div class="form-group">
+                        <label class="label" for="inputTitle">Thể loại</label>
+                        <select th:field="*{categoryId}" class="form-control">
+                            <option th:each="category : ${categories}" th:value="${category.id}"
+                                    th:text="${category.categoryName}">
+                            </option>
+                        </select>
+                        <span th:if="${#fields.hasErrors('categoryId')}" th:errors="*{categoryId}"
+                              class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="label" for="inputTitle">Nhà cung cấp</label>
+                        <select th:field="*{supplyId}" class="form-control">
+                            <option th:each="item : ${supplies}" th:value="${item.id}"
+                                    th:text="${item.supplyName}">
+                            </option>
+                        </select>
+                        <span th:if="${#fields.hasErrors('categoryId')}" th:errors="*{categoryId}"
+                              class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="form-label-group">
+                            <input type="text" th:field="*{productName}" id="inputTitle" maxlength="225"
+                                   class="form-control" placeholder="Tên sản phẩm"
+                                   required="required">
+                            <label for="inputTitle">Tên sản phẩm</label>
+                            <span th:if="${#fields.hasErrors('productName')}" th:errors="*{productName}"
+                                  class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="form-label-group">
+                            <input type="number" th:field="*{quantity}" id="quantity" class="form-control"
+                                   placeholder="Số lượng"
+                                   required="required">
+                            <label for="quantity">Số lượng</label>
+                            <span th:if="${#fields.hasErrors('quantity')}" th:errors="*{quantity}"
+                                  class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="form-label-group">
+                            <input type="number" th:field="*{price}" id="price" class="form-control"
+                                   placeholder="Đơn giá"
+                                   required="required">
+                            <label for="price">Đơn giá</label>
+                            <span th:if="${#fields.hasErrors('price')}" th:errors="*{price}" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <!--<div class="form-group">
+                        <div class="form-label-group">
+                            <input type="text" th:field="*{size}" id="size" class="form-control" placeholder="Size"
+                                required="required">
+                            <label for="size">Size</label>
+                            <span th:if="${#fields.hasErrors('size')}" th:errors="*{size}" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="form-label-group">
+                            <input type="text" th:field="*{color}" id="color" class="form-control" placeholder="Màu sắc"
+                                required="required">
+                            <label for="color">Màu Sắc</label>
+                            <span th:if="${#fields.hasErrors('color')}" th:errors="*{color}" class="text-danger"></span>
+                        </div>
+                    </div>-->
+                    <div class="form-group">
+                        <label for="inputContent">Mô tả</label>
+                        <textarea th:field="*{description}"></textarea>
+                        <span th:if="${#fields.hasErrors('description')}" th:errors="*{description}"
+                              class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <input type="checkbox" name="pin" th:checked="${pin}"/>
+                        <label for="inputPin">Sản phẩm nổi bật</label>
+                    </div>
+                    <div class="form-group">
+                        <input type="file" name="image" class="form-control-file"/>
+                        <image th:src="@{/files/{image}(image=${item.imageName})}" class="img-thumbnail">
+                    </div>
+                    <button class="btn btn-primary btn-block" type="submit">Lưu</a>
+                </form>
+
+            </div>
+        </div>
+    </div>
+    <script>
+        CKEDITOR.replace('description');
+    </script>
+</section>
+
+</body>
+
+</html>
